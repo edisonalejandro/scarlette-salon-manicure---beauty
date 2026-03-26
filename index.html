@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Scarlette Salon – Manicure & Beauty. Servicios de manicure, pedicure, nail art y más. Reserva tu cita hoy." />
+  <title>Scarlette Salon | Manicure & Beauty</title>
+  <link rel="stylesheet" href="css/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ========== HEADER / NAV ========== -->
+  <header class="header" id="header">
+    <div class="container nav-container">
+      <a href="#inicio" class="logo">
+        <span class="logo-icon">✦</span>
+        <span class="logo-text">Scarlette <em>Salon</em></span>
+      </a>
+      <nav class="nav" id="nav">
+        <ul class="nav-list">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#nosotros" class="nav-link">Nosotros</a></li>
+          <li><a href="#servicios" class="nav-link">Servicios</a></li>
+          <li><a href="#galeria" class="nav-link">Galería</a></li>
+          <li><a href="#precios" class="nav-link">Precios</a></li>
+          <li><a href="#contacto" class="nav-link">Contacto</a></li>
+        </ul>
+      </nav>
+      <a href="#reservar" class="btn btn-primary nav-cta">Reservar Cita</a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="inicio">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <span class="hero-eyebrow">Bienvenida a</span>
+      <h1 class="hero-title">Scarlette Salon<br /><em>Manicure & Beauty</em></h1>
+      <p class="hero-subtitle">
+        Tu espacio de belleza y bienestar. Uñas perfectas, sonrisas radiantes.<br />
+        Tratamientos profesionales para cada ocasión especial.
+      </p>
+      <div class="hero-actions">
+        <a href="#reservar" class="btn btn-primary btn-lg">Reservar Cita</a>
+        <a href="#servicios" class="btn btn-outline btn-lg">Ver Servicios</a>
+      </div>
+      <div class="hero-badges">
+        <div class="badge"><span class="badge-num">500+</span><span class="badge-label">Clientas felices</span></div>
+        <div class="badge-sep"></div>
+        <div class="badge"><span class="badge-num">5★</span><span class="badge-label">Calificación</span></div>
+        <div class="badge-sep"></div>
+        <div class="badge"><span class="badge-num">3+</span><span class="badge-label">Años de experiencia</span></div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <a href="#nosotros" aria-label="Siguiente sección">
+        <span class="scroll-text">Desliza</span>
+        <span class="scroll-arrow">↓</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT ========== -->
+  <section class="about section" id="nosotros">
+    <div class="container about-grid">
+      <div class="about-image-wrap">
+        <div class="about-image about-image--main">
+          <div class="about-img-placeholder">
+            <span class="about-icon">💅</span>
+          </div>
+        </div>
+        <div class="about-image about-image--badge">
+          <span class="about-badge-text">Est. 2022</span>
+        </div>
+      </div>
+      <div class="about-content">
+        <span class="section-eyebrow">Nuestra Historia</span>
+        <h2 class="section-title">Arte & Pasión en cada <em>detalle</em></h2>
+        <p class="about-text">
+          Scarlette Salon nació de la pasión por la belleza y el cuidado personal. Somos un emprendimiento dedicado a ofrecerte los mejores servicios de manicure y pedicure, usando productos de alta calidad para cuidar tu salud y realzar tu estilo.
+        </p>
+        <p class="about-text">
+          Nuestro equipo de profesionales se actualiza constantemente con las últimas tendencias en nail art, aplicación de gel, acrílico y tratamientos especializados, para que siempre luzcas perfecta.
+        </p>
+        <div class="about-values">
+          <div class="value-item">
+            <span class="value-icon">🌸</span>
+            <div>
+              <strong>Calidad Premium</strong>
+              <p>Productos hipoalergénicos y de marcas reconocidas.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">✨</span>
+            <div>
+              <strong>Higiene Total</strong>
+              <p>Esterilización completa de todos nuestros implementos.</p>
+            </div>
+          </div>
+          <div class="value-item">
+            <span class="value-icon">💖</span>
+            <div>
+              <strong>Atención Personalizada</strong>
+              <p>Cada clienta recibe un servicio único y especial.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="services section section--pink" id="servicios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Lo que ofrecemos</span>
+        <h2 class="section-title">Nuestros <em>Servicios</em></h2>
+        <p class="section-desc">Ofrecemos una amplia variedad de tratamientos de belleza para manos y pies, adaptados a tus gustos y necesidades.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">💅</div>
+          <h3 class="service-name">Manicure Clásico</h3>
+          <p class="service-desc">Limado, cutícula, masaje de manos y esmaltado con esmalte regular de larga duración.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+        <div class="service-card service-card--featured">
+          <div class="service-badge">Popular</div>
+          <div class="service-icon">💎</div>
+          <h3 class="service-name">Manicure en Gel</h3>
+          <p class="service-desc">Esmaltado semipermanente con gel UV/LED de alta cobertura. Dura hasta 3 semanas sin astillarse.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3 class="service-name">Uñas Acrílicas</h3>
+          <p class="service-desc">Extensión y escultura de uñas en acrílico. Diseños personalizados con formas variadas.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🦶</div>
+          <h3 class="service-name">Pedicure Spa</h3>
+          <p class="service-desc">Baño de pies, exfoliación, masaje relajante y esmaltado. Un verdadero momento de bienestar.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3 class="service-name">Nail Art</h3>
+          <p class="service-desc">Diseños personalizados, degradados, calcomanías, pedrería y decoraciones a tu gusto.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🌿</div>
+          <h3 class="service-name">Tratamiento Nutritivo</h3>
+          <p class="service-desc">Hidratación profunda con aceites y cremas especializadas para uñas y cutícula sanas.</p>
+          <a href="#reservar" class="service-link">Reservar →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== GALLERY ========== -->
+  <section class="gallery section" id="galeria">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Nuestros trabajos</span>
+        <h2 class="section-title">Galería de <em>Diseños</em></h2>
+        <p class="section-desc">Cada diseño es una obra de arte. Inspírate con nuestros trabajos más recientes.</p>
+      </div>
+      <div class="gallery-filter">
+        <button class="filter-btn active" data-filter="all">Todos</button>
+        <button class="filter-btn" data-filter="gel">Gel</button>
+        <button class="filter-btn" data-filter="acrilico">Acrílico</button>
+        <button class="filter-btn" data-filter="nail-art">Nail Art</button>
+        <button class="filter-btn" data-filter="pedicure">Pedicure</button>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item" data-category="gel">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">💅</span>
+            <span class="gallery-label">Gel Rosa Nude</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="nail-art">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🌸</span>
+            <span class="gallery-label">Flores de Primavera</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="acrilico">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">💎</span>
+            <span class="gallery-label">Acrílico Elegante</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="nail-art">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🎨</span>
+            <span class="gallery-label">Arte Geométrico</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="pedicure">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🦶</span>
+            <span class="gallery-label">Pedicure Rojo</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="gel">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">✨</span>
+            <span class="gallery-label">Gel Glitter</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="acrilico">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🌙</span>
+            <span class="gallery-label">Acrílico Ombre</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="nail-art">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🦋</span>
+            <span class="gallery-label">Mariposas</span>
+          </div>
+        </div>
+        <div class="gallery-item" data-category="gel">
+          <div class="gallery-placeholder">
+            <span class="gallery-emoji">🌺</span>
+            <span class="gallery-label">French Gel</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PRICING ========== -->
+  <section class="pricing section section--pink" id="precios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Tarifas</span>
+        <h2 class="section-title">Precios <em>Accesibles</em></h2>
+        <p class="section-desc">Calidad premium a precios justos. Toda belleza merece ser asequible.</p>
+      </div>
+      <div class="pricing-grid">
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Básico</h3>
+            <div class="pricing-price"><span class="price-currency">$</span><span class="price-amount">15</span></div>
+            <p class="pricing-period">por servicio</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✔ Manicure clásico</li>
+            <li>✔ Esmaltado regular</li>
+            <li>✔ Limpieza de cutícula</li>
+            <li>✔ Limado y forma</li>
+            <li class="disabled">✘ Nail art incluido</li>
+            <li class="disabled">✘ Masaje de manos</li>
+          </ul>
+          <a href="#reservar" class="btn btn-outline btn-full">Reservar</a>
+        </div>
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-popular">Más Popular</div>
+          <div class="pricing-header">
+            <h3 class="pricing-name">Estándar</h3>
+            <div class="pricing-price"><span class="price-currency">$</span><span class="price-amount">28</span></div>
+            <p class="pricing-period">por servicio</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✔ Manicure en gel</li>
+            <li>✔ Esmaltado semipermanente</li>
+            <li>✔ Limpieza de cutícula</li>
+            <li>✔ Limado y forma</li>
+            <li>✔ 1 diseño incluido</li>
+            <li>✔ Masaje de manos</li>
+          </ul>
+          <a href="#reservar" class="btn btn-primary btn-full">Reservar</a>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-header">
+            <h3 class="pricing-name">Premium</h3>
+            <div class="pricing-price"><span class="price-currency">$</span><span class="price-amount">45</span></div>
+            <p class="pricing-period">por servicio</p>
+          </div>
+          <ul class="pricing-features">
+            <li>✔ Uñas acrílicas / gel</li>
+            <li>✔ Extensión y escultura</li>
+            <li>✔ Nail art personalizado</li>
+            <li>✔ Forma a elección</li>
+            <li>✔ Decoración completa</li>
+            <li>✔ Masaje + tratamiento</li>
+          </ul>
+          <a href="#reservar" class="btn btn-outline btn-full">Reservar</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="testimonials section" id="testimonios">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-eyebrow">Lo que dicen</span>
+        <h2 class="section-title">Clientas <em>Felices</em></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"¡Increíble servicio! Mis uñas quedaron perfectas y duraron más de 3 semanas. Definitivamente mi lugar favorito."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">M</div>
+            <div>
+              <strong>María González</strong>
+              <span>Clienta frecuente</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"El nail art que me hicieron para mi boda fue simplemente espectacular. Todas mis invitadas me preguntaron dónde me hice las uñas."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">L</div>
+            <div>
+              <strong>Lucía Martínez</strong>
+              <span>Clienta especial</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Me encanta el ambiente, la atención es personalizada y los resultados siempre superan mis expectativas. ¡100% recomendado!"</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">V</div>
+            <div>
+              <strong>Valentina Ruiz</strong>
+              <span>Clienta VIP</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== APPOINTMENT / CONTACT ========== -->
+  <section class="contact section section--pink" id="contacto">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <span class="section-eyebrow">Contáctanos</span>
+        <h2 class="section-title">Reserva tu <em>Cita</em></h2>
+        <p class="contact-text">¿Lista para lucir unas uñas perfectas? Escríbenos o llámanos. Atendemos con y sin cita previa, sujeto a disponibilidad.</p>
+        <div class="contact-details">
+          <div class="contact-item">
+            <span class="contact-icon">📍</span>
+            <div>
+              <strong>Ubicación</strong>
+              <p>Tu ciudad, Colombia</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📱</span>
+            <div>
+              <strong>WhatsApp</strong>
+              <p><a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">+57 300 000 0000</a></p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">🕐</span>
+            <div>
+              <strong>Horario</strong>
+              <p>Lun – Sáb: 9:00 am – 7:00 pm<br />Dom: 10:00 am – 4:00 pm</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <span class="contact-icon">📸</span>
+            <div>
+              <strong>Instagram</strong>
+              <p><a href="#" target="_blank" rel="noopener noreferrer">@scarlette.salon</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOOKING FORM -->
+      <div class="booking-card" id="reservar">
+        <h3 class="booking-title">Solicitar Cita</h3>
+        <form class="booking-form" id="bookingForm" novalidate>
+          <div class="form-group">
+            <label class="form-label" for="nombre">Nombre completo *</label>
+            <input class="form-input" type="text" id="nombre" name="nombre" placeholder="Ej: Ana García" required />
+            <span class="form-error" id="nombre-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="telefono">Teléfono / WhatsApp *</label>
+            <input class="form-input" type="tel" id="telefono" name="telefono" placeholder="Ej: 300 123 4567" required />
+            <span class="form-error" id="telefono-error"></span>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="servicio">Servicio de interés *</label>
+            <select class="form-input form-select" id="servicio" name="servicio" required>
+              <option value="">Selecciona un servicio</option>
+              <option value="manicure-clasico">Manicure Clásico</option>
+              <option value="manicure-gel">Manicure en Gel</option>
+              <option value="acrilico">Uñas Acrílicas</option>
+              <option value="pedicure">Pedicure Spa</option>
+              <option value="nail-art">Nail Art</option>
+              <option value="tratamiento">Tratamiento Nutritivo</option>
+            </select>
+            <span class="form-error" id="servicio-error"></span>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="fecha">Fecha preferida *</label>
+              <input class="form-input" type="date" id="fecha" name="fecha" required />
+              <span class="form-error" id="fecha-error"></span>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="hora">Hora preferida *</label>
+              <select class="form-input form-select" id="hora" name="hora" required>
+                <option value="">Selecciona</option>
+                <option value="09:00">09:00 am</option>
+                <option value="10:00">10:00 am</option>
+                <option value="11:00">11:00 am</option>
+                <option value="12:00">12:00 pm</option>
+                <option value="14:00">02:00 pm</option>
+                <option value="15:00">03:00 pm</option>
+                <option value="16:00">04:00 pm</option>
+                <option value="17:00">05:00 pm</option>
+                <option value="18:00">06:00 pm</option>
+              </select>
+              <span class="form-error" id="hora-error"></span>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mensaje">Mensaje adicional</label>
+            <textarea class="form-input form-textarea" id="mensaje" name="mensaje" placeholder="Cuéntanos más sobre el diseño que deseas o alguna preferencia especial..." rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary btn-full btn-lg" id="submitBtn">
+            Solicitar Cita por WhatsApp
+          </button>
+          <p class="form-note">* Te contactaremos para confirmar tu cita.</p>
+        </form>
+        <div class="booking-success" id="bookingSuccess" hidden>
+          <div class="success-icon">🎉</div>
+          <h4>¡Solicitud enviada!</h4>
+          <p>Te contactaremos a la brevedad para confirmar tu cita. ¡Gracias por elegirnos!</p>
+          <button class="btn btn-outline" id="newBookingBtn">Hacer otra reserva</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer-grid">
+      <div class="footer-brand">
+        <a href="#inicio" class="logo logo--white">
+          <span class="logo-icon">✦</span>
+          <span class="logo-text">Scarlette <em>Salon</em></span>
+        </a>
+        <p class="footer-tagline">Belleza, arte y cuidado en cada detalle.</p>
+        <div class="footer-social">
+          <a href="#" class="social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="#" class="social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/573000000000" class="social-link" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+          </a>
+          <a href="https://www.tiktok.com/@scarlette.salon" class="social-link" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.73a8.18 8.18 0 0 0 4.78 1.52V6.8a4.85 4.85 0 0 1-1.01-.11z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <h4 class="footer-heading">Servicios</h4>
+        <ul>
+          <li><a href="#servicios">Manicure Clásico</a></li>
+          <li><a href="#servicios">Manicure en Gel</a></li>
+          <li><a href="#servicios">Uñas Acrílicas</a></li>
+          <li><a href="#servicios">Pedicure Spa</a></li>
+          <li><a href="#servicios">Nail Art</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4 class="footer-heading">Navegación</h4>
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#nosotros">Nosotros</a></li>
+          <li><a href="#galeria">Galería</a></li>
+          <li><a href="#precios">Precios</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-contact">
+        <h4 class="footer-heading">Contacto</h4>
+        <p>📱 <a href="https://wa.me/573000000000">+57 300 000 0000</a></p>
+        <p>📍 Tu ciudad, Colombia</p>
+        <p>🕐 Lun–Sáb: 9am–7pm</p>
+        <p>🕐 Dom: 10am–4pm</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container">
+        <p>&copy; 2024 Scarlette Salon. Todos los derechos reservados. Hecho con 💖</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Back to top -->
+  <button class="back-to-top" id="backToTop" aria-label="Volver arriba">↑</button>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
