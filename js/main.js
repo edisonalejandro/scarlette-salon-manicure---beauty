@@ -1,7 +1,18 @@
 /**
  * Scarlette Salon – Manicure & Beauty
  * Main JavaScript
+ *
+ * ─── CONFIGURACIÓN ───────────────────────────────────────────────────────────
+ * Antes de publicar, actualiza SALON_CONFIG con los datos reales del salón.
+ * El número de WhatsApp debe incluir el código de país sin "+".
+ * Ejemplo Colombia: 57 seguido del número de 10 dígitos.
+ * ─────────────────────────────────────────────────────────────────────────────
  */
+
+// TODO: Replace with the salon's real contact information before deployment
+var SALON_CONFIG = {
+  whatsappNumber: '573000000000' // e.g. Colombia: 57 + 10-digit local number
+};
 
 (function () {
   'use strict';
@@ -228,7 +239,7 @@
       submitBtn.textContent = 'Abriendo WhatsApp...';
 
       // Open WhatsApp
-      const waNumber = '573000000000'; // Replace with real number
+      const waNumber = SALON_CONFIG.whatsappNumber;
       const waUrl = `https://wa.me/${waNumber}?text=${waMessage}`;
 
       setTimeout(() => {
