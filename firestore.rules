@@ -1,0 +1,99 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // ===============================================================
+    // Assumed Data Model
+    // ===============================================================
+    // Collection: services
+    //   - name: string (required)
+    //   - price: number (required)
+    //   - duration: number (required)
+    //   - description: string
+    //
+    // Collection: appointments
+    //   - userId: string
+    //   - serviceId: string (required)
+    //   - date: string (YYYY-MM-DD) (required)
+    //   - time: string (required)
+    //   - status: string (pending, confirmed, cancelled)
+    //   - clientName: string (required)
+    //   - clientPhone: string (required)
+    //
+    // Collection: gallery
+    //   - imageUrl: string (required)
+    //   - title: string
+    //   - description: string
+    //   - createdAt: timestamp (required)
+    //
+    // Collection: users
+    //   - email: string (required)
+    //   - name: string
+    //   - role: string (admin, client) (required)
+    // ===============================================================
+
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' ||
+         (request.auth.token.email == "arriagada.ed@gmail.com" && request.auth.token.email_verified == true));
+    }
+
+    function isValidService(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() < 100 &&
+             data.price is number && data.price >= 0 &&
+             data.duration is number && data.duration > 0;
+    }
+
+    function isValidAppointment(data) {
+      return data.serviceId is string &&
+             data.date is string && data.date.matches("^\\d{4}-\\d{2}-\\d{2}$") &&
+             data.time is string &&
+             data.clientName is string && data.clientName.size() > 0 && data.clientName.size() < 100 &&
+             data.clientPhone is string && data.clientPhone.size() > 7;
+    }
+
+    function isValidGalleryItem(data) {
+      return data.imageUrl is string && data.imageUrl.matches("^https?://.*") &&
+             data.createdAt is timestamp;
+    }
+
+    function isValidUser(data) {
+      return data.email is string && data.email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$") &&
+             data.role in ['admin', 'client'];
+    }
+
+    // Rules
+    match /services/{serviceId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidService(request.resource.data);
+    }
+
+    match /appointments/{appointmentId} {
+      allow read: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid);
+      allow create: if isValidAppointment(request.resource.data) && 
+                    (isAdmin() || (isAuthenticated() && request.resource.data.userId == request.auth.uid));
+      allow update: if isAdmin() || (isAuthenticated() && resource.data.userId == request.auth.uid && 
+                    request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'clientName', 'clientPhone']));
+      allow delete: if isAdmin();
+    }
+
+    match /gallery/{itemId} {
+      allow read: if true;
+      allow write: if isAdmin() && isValidGalleryItem(request.resource.data);
+    }
+
+    match /users/{userId} {
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isAuthenticated() && isOwner(userId) && isValidUser(request.resource.data) && request.resource.data.role == 'client';
+      allow update: if isAdmin() || (isOwner(userId) && request.resource.data.role == resource.data.role);
+    }
+  }
+}
