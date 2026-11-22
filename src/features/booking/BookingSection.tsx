@@ -10,11 +10,14 @@ import { ServiceSelection } from './ServiceSelection';
 import { DateTimeSelection } from './DateTimeSelection';
 import { BookingConfirmation } from './BookingConfirmation';
 import { BookingSuccess } from './BookingSuccess';
+import { BookingComingSoon } from './BookingComingSoon';
 import { startOfToday } from 'date-fns';
 import { User } from 'firebase/auth';
 
 interface BookingSectionProps {
   services: Service[];
+  /** true cuando no hay servicios disponibles (p. ej. backend aún no publicado) */
+  unavailable?: boolean;
   user: User | null;
   onBookingComplete: (data: {
     serviceId: string;
@@ -25,7 +28,7 @@ interface BookingSectionProps {
   }) => Promise<void>;
 }
 
-export function BookingSection({ services, user, onBookingComplete }: BookingSectionProps) {
+export function BookingSection({ services, unavailable = false, user, onBookingComplete }: BookingSectionProps) {
   const [bookingStep, setBookingStep] = useState(1);
   const [selectedService, setSelectedService] = useState<Service | null>(null);
   const [selectedDate, setSelectedDate] = useState<Date>(startOfToday());
@@ -70,10 +73,18 @@ export function BookingSection({ services, user, onBookingComplete }: BookingSec
           <h2 className="mt-4 text-5xl md:text-6xl text-ink">
             Reserva tu <em className="mark">hora</em>
           </h2>
-          <p className="mt-4 text-muted">Selecciona el servicio y la fecha que más te acomode.</p>
+          <p className="mt-4 text-muted">
+            {unavailable
+              ? 'Agenda tu momento para consentirte.'
+              : 'Selecciona el servicio y la fecha que más te acomode.'}
+          </p>
         </div>
 
         <div className="card p-6 sm:p-8 md:p-12 shadow-xl shadow-ink/[0.03]">
+          {unavailable ? (
+            <BookingComingSoon />
+          ) : (
+          <>
           <BookingSteps currentStep={bookingStep} />
 
           {bookingStep === 1 && (
@@ -108,6 +119,8 @@ export function BookingSection({ services, user, onBookingComplete }: BookingSec
 
           {bookingStep === 4 && (
             <BookingSuccess onReset={handleReset} />
+          )}
+          </>
           )}
         </div>
       </div>

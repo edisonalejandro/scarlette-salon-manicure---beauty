@@ -19,7 +19,7 @@ import { useAppointments } from './hooks/useAppointments';
 export default function App() {
   // Custom hooks manage all state and side effects
   const { user, isAdmin, loading: authLoading, signIn, signOut } = useAuth();
-  const { services } = useServices();
+  const { services, loading: servicesLoading } = useServices();
   const { gallery } = useGallery();
   const { appointments, createAppointment, updateStatus, deleteAppointment } = useAppointments(isAdmin);
 
@@ -51,6 +51,7 @@ export default function App() {
       
       <BookingSection 
         services={services}
+        unavailable={!servicesLoading && services.length === 0}
         user={user}
         onBookingComplete={handleBookingComplete}
       />
