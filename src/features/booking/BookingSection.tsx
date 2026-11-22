@@ -63,14 +63,17 @@ export function BookingSection({ services, user, onBookingComplete }: BookingSec
   };
 
   return (
-    <section id="booking" className="py-24 bg-soft-black relative">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-serif mb-4">Reserva tu Hora</h2>
-          <p className="text-gray-400">Selecciona el servicio y la fecha que más te acomode.</p>
+    <section id="booking" className="py-24 md:py-32 bg-gradient-to-b from-sand/60 to-butter/40 border-y border-line relative">
+      <div className="max-w-5xl mx-auto px-5 sm:px-8">
+        <div className="text-center mb-14">
+          <span className="eyebrow">Reservas online</span>
+          <h2 className="mt-4 text-5xl md:text-6xl text-ink">
+            Reserva tu <em className="mark">hora</em>
+          </h2>
+          <p className="mt-4 text-muted">Selecciona el servicio y la fecha que más te acomode.</p>
         </div>
 
-        <div className="glass-card p-6 md:p-10">
+        <div className="card p-6 sm:p-8 md:p-12 shadow-xl shadow-ink/[0.03]">
           <BookingSteps currentStep={bookingStep} />
 
           {bookingStep === 1 && (

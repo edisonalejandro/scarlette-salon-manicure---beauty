@@ -1,8 +1,3 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import { useState, useEffect } from 'react';
 import { onAuthStateChanged, User } from 'firebase/auth';
 import { auth } from '../firebase';
@@ -16,26 +11,20 @@ export function useAuth() {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
-      
+
       if (currentUser) {
-        // Check if user profile exists
-        const profile = await authService.getUserProfile(currentUser.uid);
-        
-        if (profile) {
+        try {
+          // Sincroniza o crea el perfil en el backend y obtiene el rol
+          const profile = await authService.syncUserProfile(currentUser);
           setIsAdmin(profile.role === 'admin');
-        } else {
-          // Create client profile
-          await authService.createUserProfile(currentUser.uid, {
-            email: currentUser.email,
-            name: currentUser.displayName,
-            role: 'client'
-          });
+        } catch (error) {
+          console.error('Error al sincronizar perfil con backend:', error);
           setIsAdmin(false);
         }
       } else {
         setIsAdmin(false);
       }
-      
+
       setLoading(false);
     });
 

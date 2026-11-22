@@ -1,18 +1,14 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { 
-  signInWithPopup, 
-  GoogleAuthProvider, 
+import {
+  signInWithPopup,
+  GoogleAuthProvider,
   signOut as firebaseSignOut,
   User
 } from 'firebase/auth';
-import { doc, getDoc, setDoc } from 'firebase/firestore';
-import { auth, db } from '../firebase';
+import { auth } from '../firebase';
+import { apiClient } from '../lib/apiClient';
 
 export interface UserProfile {
+  id: string;
   email: string | null;
   name: string | null;
   role: 'admin' | 'client';
@@ -35,27 +31,13 @@ export async function signOut(): Promise<void> {
 }
 
 /**
- * Get user profile from Firestore
+ * Sincroniza el perfil del usuario con el backend REST.
+ * Crea el perfil si no existe (primer login) o lo actualiza.
+ * El token ya está disponible porque Firebase Auth ya actualizó currentUser.
  */
-export async function getUserProfile(userId: string): Promise<UserProfile | null> {
-  const userDoc = await getDoc(doc(db, 'users', userId));
-  if (userDoc.exists()) {
-    return userDoc.data() as UserProfile;
-  }
-  return null;
-}
-
-/**
- * Create or update user profile
- */
-export async function createUserProfile(userId: string, profile: UserProfile): Promise<void> {
-  await setDoc(doc(db, 'users', userId), profile);
-}
-
-/**
- * Check if user is admin
- */
-export async function isUserAdmin(userId: string): Promise<boolean> {
-  const profile = await getUserProfile(userId);
-  return profile?.role === 'admin';
+export async function syncUserProfile(user: User): Promise<UserProfile> {
+  return apiClient.post<UserProfile>('/api/users/me', {
+    email: user.email,
+    name: user.displayName,
+  });
 }

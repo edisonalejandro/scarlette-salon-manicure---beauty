@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { User } from 'firebase/auth';
 import { Menu, X, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { cn } from '../lib/utils';
 
 interface NavbarProps {
   user: User | null;
@@ -15,44 +16,80 @@ interface NavbarProps {
   onLogout: () => void;
 }
 
+const links = [
+  { href: '#home', label: 'Inicio' },
+  { href: '#gallery', label: 'Trabajos' },
+  { href: '#booking', label: 'Reservar' },
+];
+
 export function Navbar({ user, isAdmin, onLogin, onLogout }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav
+      className={cn(
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
+        scrolled || isOpen
+          ? 'bg-cream/85 backdrop-blur-xl border-b border-line'
+          : 'bg-transparent border-b border-transparent'
+      )}
+    >
+      <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex justify-between h-20 items-center">
-          <div className="flex items-center gap-2">
-            <div className="w-10 h-10 rounded-full gold-gradient flex items-center justify-center font-serif font-bold text-black text-xl">
-              S
-            </div>
-            <span className="font-serif text-xl gold-text font-bold tracking-wider">SCARLETTE SALON</span>
-          </div>
+          <a href="#home" className="flex flex-col leading-none">
+            <span className="font-serif text-2xl tracking-[0.18em] text-ink">SCARLETTE<span className="text-sun">.</span></span>
+            <span className="text-[9px] font-semibold uppercase tracking-[0.45em] text-rose-deep mt-1">
+              Manicure &amp; Beauty
+            </span>
+          </a>
 
-          <div className="hidden md:flex items-center gap-8">
-            <a href="#home" className="hover:text-gold transition-colors">Inicio</a>
-            <a href="#gallery" className="hover:text-gold transition-colors">Trabajos</a>
-            <a href="#booking" className="hover:text-gold transition-colors">Reservar</a>
-            {isAdmin && <a href="#admin" className="text-gold font-bold">Admin</a>}
-            
+          <div className="hidden md:flex items-center gap-10">
+            {links.map((l) => (
+              <a
+                key={l.href}
+                href={l.href}
+                className="relative text-sm font-medium text-ink/80 hover:text-ink transition-colors after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-sun after:transition-all hover:after:w-full"
+              >
+                {l.label}
+              </a>
+            ))}
+            {isAdmin && (
+              <a href="#admin" className="text-sm font-semibold text-rose-deep">
+                Admin
+              </a>
+            )}
+
             {user ? (
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-400">{user.displayName}</span>
-                <button onClick={onLogout} className="p-2 hover:bg-white/10 rounded-full transition-colors">
-                  <LogOut className="w-5 h-5" />
+              <div className="flex items-center gap-3 pl-6 border-l border-line">
+                <span className="text-sm text-muted">{user.displayName}</span>
+                <button
+                  onClick={onLogout}
+                  aria-label="Cerrar sesión"
+                  className="p-2 rounded-full hover:bg-sand transition-colors"
+                >
+                  <LogOut className="w-4 h-4" />
                 </button>
               </div>
             ) : (
-              <button 
-                onClick={onLogin}
-                className="px-6 py-2 gold-gradient text-black font-bold rounded-full hover:scale-105 transition-transform"
-              >
+              <button onClick={onLogin} className="btn-ghost px-6 py-2.5">
                 Ingresar
               </button>
             )}
           </div>
 
-          <button className="md:hidden p-2" onClick={() => setIsOpen(!isOpen)}>
+          <button
+            className="md:hidden p-2 -mr-2"
+            aria-label={isOpen ? 'Cerrar menú' : 'Abrir menú'}
+            onClick={() => setIsOpen(!isOpen)}
+          >
             {isOpen ? <X /> : <Menu />}
           </button>
         </div>
@@ -61,20 +98,40 @@ export function Navbar({ user, isAdmin, onLogin, onLogout }: NavbarProps) {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            className="md:hidden bg-soft-black border-b border-white/10 px-4 py-6 flex flex-col gap-4"
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: 'auto' }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden overflow-hidden bg-cream border-b border-line"
           >
-            <a href="#home" onClick={() => setIsOpen(false)}>Inicio</a>
-            <a href="#gallery" onClick={() => setIsOpen(false)}>Trabajos</a>
-            <a href="#booking" onClick={() => setIsOpen(false)}>Reservar</a>
-            {user ? (
-              <button onClick={onLogout} className="text-left text-red-400">Cerrar Sesión</button>
-            ) : (
-              <button onClick={onLogin} className="text-left text-gold">Ingresar</button>
-            )}
+            <div className="px-5 py-6 flex flex-col gap-5">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  onClick={() => setIsOpen(false)}
+                  className="font-serif text-3xl text-ink"
+                >
+                  {l.label}
+                </a>
+              ))}
+              {isAdmin && (
+                <a href="#admin" onClick={() => setIsOpen(false)} className="font-serif text-3xl text-rose-deep">
+                  Admin
+                </a>
+              )}
+              <div className="pt-4 border-t border-line">
+                {user ? (
+                  <button onClick={onLogout} className="text-sm font-semibold text-rose-deep">
+                    Cerrar sesión
+                  </button>
+                ) : (
+                  <button onClick={onLogin} className="text-sm font-semibold text-ink">
+                    Ingresar
+                  </button>
+                )}
+              </div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

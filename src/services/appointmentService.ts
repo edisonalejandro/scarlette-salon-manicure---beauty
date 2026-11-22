@@ -1,21 +1,5 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { 
-  collection, 
-  addDoc, 
-  query, 
-  orderBy,
-  onSnapshot,
-  Timestamp,
-  Unsubscribe
-} from 'firebase/firestore';
-import { db } from '../firebase';
+import { apiClient } from '../lib/apiClient';
 import { Appointment } from '../types';
-
-const APPOINTMENTS_COLLECTION = 'appointments';
 
 export interface CreateAppointmentData {
   userId: string | null;
@@ -26,25 +10,23 @@ export interface CreateAppointmentData {
   clientPhone: string;
 }
 
-/**
- * Create a new appointment
- */
-export async function createAppointment(data: CreateAppointmentData): Promise<string> {
-  const docRef = await addDoc(collection(db, APPOINTMENTS_COLLECTION), {
-    ...data,
-    status: 'pending',
-    createdAt: Timestamp.now()
-  });
-  return docRef.id;
+export async function createAppointment(data: CreateAppointmentData): Promise<Appointment> {
+  return apiClient.post<Appointment>('/api/appointments', data);
 }
 
-/**
- * Subscribe to appointments (admin only)
- */
-export function subscribeToAppointments(callback: (appointments: Appointment[]) => void): Unsubscribe {
-  const q = query(collection(db, APPOINTMENTS_COLLECTION), orderBy('date', 'desc'));
-  return onSnapshot(q, (snapshot) => {
-    const appointments = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() } as Appointment));
-    callback(appointments);
-  });
+export async function getAllAppointments(): Promise<Appointment[]> {
+  // El backend devuelve Page<AppointmentResponse>, extraemos el content
+  const page = await apiClient.get<{ content: Appointment[] }>('/api/appointments');
+  return page.content;
+}
+
+export async function updateAppointmentStatus(
+  id: string,
+  status: 'pending' | 'confirmed' | 'cancelled'
+): Promise<Appointment> {
+  return apiClient.patch<Appointment>(`/api/appointments/${id}/status`, { status });
+}
+
+export async function deleteAppointment(id: string): Promise<void> {
+  return apiClient.delete<void>(`/api/appointments/${id}`);
 }
