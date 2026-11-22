@@ -6,6 +6,7 @@
 import React from 'react';
 import { motion } from 'motion/react';
 import { ArrowRight, Sparkles, Heart, Home } from 'lucide-react';
+import { asset } from '../lib/asset';
 
 const values = [
   { icon: Sparkles, title: 'Diseños a tu medida', text: 'Permanente, softgel, pedicure y lash lifting.' },
@@ -85,7 +86,7 @@ export function Hero() {
           >
             <div className="relative aspect-[4/5] rounded-t-full overflow-hidden bg-sand">
               <img
-                src="/images/trabajos/trabajo-1.jpg"
+                src={asset('/images/trabajos/trabajo-1.jpg')}
                 className="w-full h-full object-cover"
                 alt="Uñas pastel con líneas finas, trabajo de Scarlette ABS"
                 fetchPriority="high"
@@ -98,7 +99,7 @@ export function Hero() {
             />
             {/* Sello */}
             <img
-              src="/images/brand/logo-abs-320.png"
+              src={asset('/images/brand/logo-abs-320.png')}
               alt="Logo ABS Scarlette Salon"
               width={128}
               height={128}

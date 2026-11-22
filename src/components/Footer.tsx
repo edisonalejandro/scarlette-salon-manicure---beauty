@@ -5,6 +5,7 @@
 
 import React from 'react';
 import { Phone, Instagram, MapPin, MessageCircle } from 'lucide-react';
+import { asset } from '../lib/asset';
 
 export function Footer() {
   return (
@@ -26,7 +27,7 @@ export function Footer() {
         <div>
           <div className="flex items-center gap-4">
             <img
-              src="/images/brand/logo-abs-160.png"
+              src={asset('/images/brand/logo-abs-160.png')}
               alt="ABS Scarlette Salon"
               width={64}
               height={64}

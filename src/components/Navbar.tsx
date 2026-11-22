@@ -8,6 +8,7 @@ import { User } from 'firebase/auth';
 import { Menu, X, LogOut } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { cn } from '../lib/utils';
+import { asset } from '../lib/asset';
 
 interface NavbarProps {
   user: User | null;
@@ -46,7 +47,7 @@ export function Navbar({ user, isAdmin, onLogin, onLogout }: NavbarProps) {
         <div className="flex justify-between h-20 items-center">
           <a href="#home" className="flex items-center gap-3">
             <img
-              src="/images/brand/logo-abs-160.png"
+              src={asset('/images/brand/logo-abs-160.png')}
               alt="ABS Scarlette Salon"
               width={48}
               height={48}
