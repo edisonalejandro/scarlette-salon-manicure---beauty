@@ -5,15 +5,19 @@
 
 import React from 'react';
 import { motion } from 'motion/react';
-import { ImageIcon } from 'lucide-react';
+import { Instagram } from 'lucide-react';
 import { GalleryItem } from '../../types';
 import { cn } from '../../lib/utils';
+import { trabajosDestacados } from '../../data/trabajos';
 
 interface GallerySectionProps {
   items: GalleryItem[];
 }
 
 export function GallerySection({ items }: GallerySectionProps) {
+  // Si el backend aún no tiene fotos, mostramos trabajos reales de su Instagram
+  const shown = items.length > 0 ? items : trabajosDestacados;
+
   return (
     <section id="gallery" className="py-24 md:py-32 px-5 sm:px-8 max-w-7xl mx-auto">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
@@ -28,17 +32,17 @@ export function GallerySection({ items }: GallerySectionProps) {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6">
-        {items.length > 0 ? items.map((item, idx) => (
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+        {shown.map((item, idx) => (
           <motion.figure
             key={item.id}
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6, delay: (idx % 3) * 0.1 }}
+            transition={{ duration: 0.6, delay: (idx % 4) * 0.08 }}
             className={cn(
               'group relative aspect-[4/5] overflow-hidden rounded-2xl sm:rounded-3xl bg-sand',
-              idx % 3 === 1 && 'lg:translate-y-10'
+              idx % 2 === 1 && 'lg:translate-y-10'
             )}
           >
             <img
@@ -55,19 +59,19 @@ export function GallerySection({ items }: GallerySectionProps) {
               </figcaption>
             )}
           </motion.figure>
-        )) : (
-          [1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              className={cn(
-                'aspect-[4/5] rounded-2xl sm:rounded-3xl bg-sand animate-pulse flex items-center justify-center',
-                i % 3 === 2 && 'lg:translate-y-10'
-              )}
-            >
-              <ImageIcon className="w-10 h-10 text-line" strokeWidth={1} />
-            </div>
-          ))
-        )}
+        ))}
+      </div>
+
+      <div className="mt-20 lg:mt-24 text-center">
+        <a
+          href="https://instagram.com/scarlette.abs"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="btn-ghost"
+        >
+          <Instagram className="w-4 h-4" strokeWidth={1.75} />
+          Ver más en @scarlette.abs
+        </a>
       </div>
     </section>
   );

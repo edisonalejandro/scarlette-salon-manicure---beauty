@@ -85,9 +85,9 @@ export function Hero() {
           >
             <div className="relative aspect-[4/5] rounded-t-full overflow-hidden bg-sand">
               <img
-                src="https://images.unsplash.com/photo-1604654894610-df63bc536371?auto=format&fit=crop&q=80&w=1200"
+                src="/images/trabajos/trabajo-1.jpg"
                 className="w-full h-full object-cover"
-                alt="Manicura elegante en tonos nude"
+                alt="Uñas pastel con líneas finas, trabajo de Scarlette ABS"
                 fetchPriority="high"
               />
             </div>
