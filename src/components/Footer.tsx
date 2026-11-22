@@ -11,8 +11,8 @@ export function Footer() {
     <footer className="bg-ink text-cream">
       {/* Llamado final */}
       <div className="max-w-7xl mx-auto px-5 sm:px-8 pt-24 pb-16 border-b border-cream/15 flex flex-col md:flex-row md:items-end justify-between gap-10">
-        <h2 className="text-5xl sm:text-6xl leading-[0.95] max-w-xl">
-          Tus manos merecen <em className="italic text-sun">lo mejor</em>
+        <h2 className="text-5xl sm:text-6xl leading-[0.95] lg:whitespace-nowrap">
+          Tus manos merecen <em className="italic text-sun whitespace-nowrap">lo mejor</em>
         </h2>
         <a
           href="#booking"
