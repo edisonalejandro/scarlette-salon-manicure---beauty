@@ -1,39 +1,93 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --font-serif: "Playfair Display", serif;
-  
-  --color-gold: #D4AF37;
-  --color-gold-light: #FFD700;
-  --color-gold-dark: #996515;
-  --color-black: #000000;
-  --color-soft-black: #121212;
-  --color-white: #FFFFFF;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", "Times New Roman", serif;
+
+  /* Paleta nude editorial */
+  --color-cream: #F6EFE9;      /* fondo principal */
+  --color-sand: #EDE3DA;       /* fondo alterno / superficies */
+  --color-shell: #FBF8F5;      /* tarjetas */
+  --color-line: #E0D3C8;       /* bordes finos */
+  --color-ink: #2A2421;        /* texto principal / botones */
+  --color-muted: #6F625B;      /* texto secundario (AA sobre cream) */
+  --color-rose: #C98B8B;       /* acento decorativo (solo texto grande) */
+  --color-rose-deep: #9A5A5C;  /* acento con contraste para texto pequeño */
+  --color-blush: #F1DEDB;      /* fondos suaves de acento */
+  --color-gold: #D4AF37;       /* dorado del logo ABS */
+
+  /* Amarillo: el color favorito de Scarlett */
+  --color-butter: #F7E3A1;     /* amarillo mantequilla (fondos, subrayados) */
+  --color-sun: #EBC24F;        /* amarillo principal (acentos, selección) */
+  --color-honey: #7F5F0E;      /* amarillo oscuro para texto pequeño (AA) */
 }
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-black text-white font-sans;
+    @apply bg-cream text-ink font-sans antialiased;
   }
-  
+
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+    @apply font-serif font-medium;
+    letter-spacing: -0.01em;
+  }
+
+  ::selection {
+    @apply bg-butter text-ink;
+  }
+
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-rose-deep;
   }
 }
 
-.gold-gradient {
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
 
-.gold-text {
-  @apply text-gold;
-  background: linear-gradient(135deg, #D4AF37 0%, #FFD700 50%, #D4AF37 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
+@layer components {
+  /* Etiqueta pequeña sobre títulos */
+  .eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.28em] text-rose-deep;
+  }
+  .eyebrow::before {
+    content: "";
+    @apply block h-0.5 w-8 rounded-full bg-sun;
+  }
 
-.glass-card {
-  @apply bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl;
-}
+  /* Subrayado tipo marcador amarillo para palabras destacadas */
+  .mark {
+    @apply italic text-rose-deep;
+    background: linear-gradient(transparent 62%, var(--color-butter) 62%, var(--color-butter) 92%, transparent 92%);
+    padding: 0 0.08em;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
 
+  /* Dorado metálico como el logo de su Instagram */
+  .gold-foil {
+    background: radial-gradient(circle at 30% 25%, #FFF4C2 0%, #F2D66B 35%, #D4AF37 70%, #B8902A 100%);
+  }
+
+  .card {
+    @apply bg-shell border border-line rounded-3xl;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-8 py-4 text-sm font-semibold tracking-wide text-cream transition-all duration-300 hover:bg-sun hover:text-ink disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:bg-ink;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-ink/25 px-8 py-4 text-sm font-semibold tracking-wide text-ink transition-all duration-300 hover:border-ink hover:bg-ink hover:text-cream;
+  }
+
+  .field {
+    @apply w-full rounded-2xl border border-line bg-shell px-4 py-3.5 text-ink placeholder:text-muted/60 outline-none transition-colors focus:border-rose-deep;
+  }
+}

@@ -21,7 +21,7 @@ export default function App() {
   const { user, isAdmin, loading: authLoading, signIn, signOut } = useAuth();
   const { services } = useServices();
   const { gallery } = useGallery();
-  const { appointments, createAppointment } = useAppointments(isAdmin);
+  const { appointments, createAppointment, updateStatus, deleteAppointment } = useAppointments(isAdmin);
 
   // Handle booking submission
   const handleBookingComplete = async (data: {
@@ -42,7 +42,7 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-screen bg-black overflow-x-hidden">
+    <div className="min-h-screen bg-cream overflow-x-hidden">
       <Navbar user={user} isAdmin={isAdmin} onLogin={signIn} onLogout={signOut} />
       
       <Hero />
@@ -59,6 +59,8 @@ export default function App() {
         <AdminPanel 
           services={services}
           appointments={appointments}
+          onUpdateStatus={updateStatus}
+          onDeleteAppointment={deleteAppointment}
         />
       )}
       
