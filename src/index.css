@@ -70,11 +70,6 @@
     box-decoration-break: clone;
   }
 
-  /* Dorado metálico como el logo de su Instagram */
-  .gold-foil {
-    background: radial-gradient(circle at 30% 25%, #FFF4C2 0%, #F2D66B 35%, #D4AF37 70%, #B8902A 100%);
-  }
-
   .card {
     @apply bg-shell border border-line rounded-3xl;
   }

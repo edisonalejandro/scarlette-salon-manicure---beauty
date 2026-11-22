@@ -97,10 +97,13 @@ export function Hero() {
               className="absolute inset-0 translate-x-4 translate-y-4 rounded-t-full bg-butter -z-10"
             />
             {/* Sello */}
-            <div className="absolute -left-4 sm:-left-8 bottom-10 w-28 h-28 rounded-full gold-foil shadow-xl shadow-honey/20 flex flex-col items-center justify-center ring-4 ring-cream">
-              <p className="font-serif text-4xl leading-none text-ink/85">ABS</p>
-              <p className="font-serif italic text-xs text-ink/70 -mt-0.5">scarlette salon</p>
-            </div>
+            <img
+              src="/images/brand/logo-abs-320.png"
+              alt="Logo ABS Scarlette Salon"
+              width={128}
+              height={128}
+              className="absolute -left-4 sm:-left-8 bottom-10 w-28 h-28 sm:w-32 sm:h-32 rounded-full shadow-xl shadow-honey/25 ring-4 ring-cream"
+            />
           </motion.div>
         </div>
       </section>

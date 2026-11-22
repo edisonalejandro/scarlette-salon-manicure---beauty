@@ -24,8 +24,20 @@ export function Footer() {
 
       <div className="max-w-7xl mx-auto px-5 sm:px-8 py-16 grid grid-cols-1 md:grid-cols-3 gap-12">
         <div>
-          <p className="font-serif text-2xl tracking-[0.18em]">SCARLETTE<span className="text-sun">.</span></p>
-          <p className="text-[9px] font-semibold uppercase tracking-[0.45em] text-sun mt-1">Manicure &amp; Beauty</p>
+          <div className="flex items-center gap-4">
+            <img
+              src="/images/brand/logo-abs-160.png"
+              alt="ABS Scarlette Salon"
+              width={64}
+              height={64}
+              loading="lazy"
+              className="w-16 h-16 rounded-full"
+            />
+            <div>
+              <p className="font-serif text-2xl tracking-[0.18em]">SCARLETTE</p>
+              <p className="text-[9px] font-semibold uppercase tracking-[0.45em] text-sun mt-1">Manicure &amp; Beauty</p>
+            </div>
+          </div>
           <p className="text-cream/60 text-sm mt-6 max-w-xs leading-relaxed">
             Dedicados a resaltar tu belleza natural con los mejores productos y técnicas del mercado.
           </p>

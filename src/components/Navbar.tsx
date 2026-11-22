@@ -44,10 +44,19 @@ export function Navbar({ user, isAdmin, onLogin, onLogout }: NavbarProps) {
     >
       <div className="max-w-7xl mx-auto px-5 sm:px-8">
         <div className="flex justify-between h-20 items-center">
-          <a href="#home" className="flex flex-col leading-none">
-            <span className="font-serif text-2xl tracking-[0.18em] text-ink">SCARLETTE<span className="text-sun">.</span></span>
-            <span className="text-[9px] font-semibold uppercase tracking-[0.45em] text-rose-deep mt-1">
-              Manicure &amp; Beauty
+          <a href="#home" className="flex items-center gap-3">
+            <img
+              src="/images/brand/logo-abs-160.png"
+              alt="ABS Scarlette Salon"
+              width={48}
+              height={48}
+              className="w-12 h-12 rounded-full shadow-md shadow-honey/20"
+            />
+            <span className="flex flex-col leading-none">
+              <span className="font-serif text-2xl tracking-[0.18em] text-ink">SCARLETTE</span>
+              <span className="text-[9px] font-semibold uppercase tracking-[0.45em] text-rose-deep mt-1">
+                Manicure &amp; Beauty
+              </span>
             </span>
           </a>
 
