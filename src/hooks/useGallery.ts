@@ -1,36 +1,37 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { GalleryItem } from '../types';
-import * as galleryService from '../services/galleryService';
+import { getAllGalleryItems, createGalleryItem, deleteGalleryItem } from '../services/galleryService';
 
 export function useGallery() {
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
-  useEffect(() => {
-    // Subscribe to gallery changes
-    const unsubscribe = galleryService.subscribeToGallery((items) => {
-      setGallery(items);
+  const fetchGallery = useCallback(async () => {
+    try {
+      setLoading(true);
+      const data = await getAllGalleryItems();
+      setGallery(data);
+    } catch (err) {
+      setError(err instanceof Error ? err : new Error('Error al cargar galería'));
+    } finally {
       setLoading(false);
-    });
-
-    // Seed initial data if needed
-    galleryService.seedInitialGallery().catch((err) => {
-      console.error('Error seeding gallery:', err);
-      setError(err);
-    });
-
-    return unsubscribe;
+    }
   }, []);
 
-  return {
-    gallery,
-    loading,
-    error
+  useEffect(() => {
+    fetchGallery();
+  }, [fetchGallery]);
+
+  const addGalleryItem = async (item: Omit<GalleryItem, 'id' | 'createdAt'>) => {
+    await createGalleryItem(item);
+    await fetchGallery();
   };
+
+  const removeGalleryItem = async (id: string) => {
+    await deleteGalleryItem(id);
+    await fetchGallery();
+  };
+
+  return { gallery, loading, error, addGalleryItem, removeGalleryItem, refetch: fetchGallery };
 }
